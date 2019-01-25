@@ -2828,6 +2828,12 @@ class ProfileRequest : public ::google::protobuf::Message /* @@protoc_insertion_
   ::std::string* release_output_path();
   void set_allocated_output_path(::std::string* output_path);
 
+  // uint64 seconds = 3;
+  void clear_seconds();
+  static const int kSecondsFieldNumber = 3;
+  ::google::protobuf::uint64 seconds() const;
+  void set_seconds(::google::protobuf::uint64 value);
+
   // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
   void clear_ptype();
   static const int kPtypeFieldNumber = 1;
@@ -2839,6 +2845,7 @@ class ProfileRequest : public ::google::protobuf::Message /* @@protoc_insertion_
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr output_path_;
+  ::google::protobuf::uint64 seconds_;
   int ptype_;
   mutable int _cached_size_;
   friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
@@ -4749,6 +4756,20 @@ inline void ProfileRequest::set_allocated_output_path(::std::string* output_path
   }
   output_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), output_path);
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.ProfileRequest.output_path)
+}
+
+// uint64 seconds = 3;
+inline void ProfileRequest::clear_seconds() {
+  seconds_ = GOOGLE_ULONGLONG(0);
+}
+inline ::google::protobuf::uint64 ProfileRequest::seconds() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.seconds)
+  return seconds_;
+}
+inline void ProfileRequest::set_seconds(::google::protobuf::uint64 value) {
+  
+  seconds_ = value;
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.seconds)
 }
 
 // -------------------------------------------------------------------

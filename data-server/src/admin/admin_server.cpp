@@ -1,9 +1,17 @@
 #include "admin_server.h"
 
+#include <future>
+#ifdef SHARK_USE_GPERF
+#include <gperftools/profiler.h>
+#endif
+#ifdef SHARK_USE_TCMALLOC
+#include <gperftools/heap-profiler.h>
+#endif
 #include "net/session.h"
 #include "frame/sf_logger.h"
 #include "server/range_server.h"
 #include "server/worker.h"
+
 
 namespace sharkstore {
 namespace dataserver {
@@ -63,6 +71,8 @@ Status AdminServer::execute(const AdminRequest& req, AdminResponse* resp) {
             return getPending(req.get_pendings_req(), resp->mutable_get_pendings_resp());
         case FLUSH_DB:
             return flushDB(req.flush_db_req(), resp->mutable_flush_db_resp());
+        case PROFILE:
+            return profile(req.profile_req(), resp->mutable_profile_resp());
         default:
             return Status(Status::kNotSupported, "admin type", std::to_string(req.typ()));
     }
@@ -167,6 +177,67 @@ Status AdminServer::flushDB(const FlushDBRequest& req, FlushDBResponse* resp) {
         return Status(Status::kIOError, "flush", s.ToString());
     }
     return Status::OK();
+}
+
+Status AdminServer::profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::ProfileResponse* resp) {
+    static const uint64_t kProfileDefaultSeconds = 10;
+    static const uint64_t kProfileMaxSeconds = 60*60; // 1h
+    static const std::string kProfileDefaultOutPutPath = "/tmp";
+
+    // invalidate seconds
+    auto seconds = req.seconds();
+    if (seconds == 0) {
+        seconds = kProfileDefaultSeconds;
+    } else if (seconds > kProfileMaxSeconds) {
+        seconds = kProfileMaxSeconds;
+    }
+    // invalidate path
+    auto path = req.output_path();
+    if (path.empty()) {
+        path = kProfileDefaultOutPutPath;
+    }
+
+    std::function<void()> start_func;
+    std::function<void()> stop_func;
+    // check type
+    switch (req.ptype()) {
+    case ds_adminpb::ProfileRequest_ProfileType_CPU:
+#ifndef SHARK_USE_GPERF
+        return Status(Status::kNotSupported, "cpu profile", "disabled");
+#else
+        start_func = [path]() {
+            ProfilerStart("/tmp/ds_cpu.pprof");
+        };
+        end_func = ProfilerStop;
+        break;
+#endif
+    case ds_adminpb::ProfileRequest_ProfileType_HEAP:
+#ifndef SHARK_USE_TCMALLOC
+        return Status(Status::kNotSupported, "heap profile", "tcmalloc not enabled");
+#else
+        start_func = [path]() {
+            HeapProfilerStart("/tmp/ds_heap.pprof");
+        };
+        end_func = HeapProfilerStop;
+        break;
+#endif
+    default:
+        return Status(Status::kInvalidArgument, "profile type", ProfileRequest_ProfileType_Name(req.ptype()));
+    }
+
+    // check already running
+    bool expected = false;
+    if (!profile_running_.compare_exchange_strong(expected, true)) {
+        return Status(Status::kDuplicate, "profile", "already running");
+    }
+
+    auto f = std::async(std::launch::async, [&, this] {
+        start_func();
+        ::sleep(seconds);
+        stop_func();
+    });
+    f.get();
+    profile_running_ = false;
 }
 
 } // namespace admin

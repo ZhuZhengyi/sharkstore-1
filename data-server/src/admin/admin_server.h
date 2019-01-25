@@ -33,10 +33,12 @@ private:
     Status clearQueue(const ds_adminpb::ClearQueueRequest& req, ds_adminpb::ClearQueueResponse* resp);
     Status getPending(const ds_adminpb::GetPendingsRequest& req, ds_adminpb::GetPendingsResponse* resp);
     Status flushDB(const ds_adminpb::FlushDBRequest& req, ds_adminpb::FlushDBResponse* resp);
+    Status profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::ProfileResponse* resp);
 
 private:
     server::ContextServer* context_ = nullptr;
     std::unique_ptr<net::Server> net_server_;
+    std::atomic<bool> profile_running_ = {false};
     // TODO: worker thread
 };
 

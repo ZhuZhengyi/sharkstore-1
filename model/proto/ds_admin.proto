@@ -164,6 +164,7 @@ message ProfileRequest {
 
     ProfileType ptype   = 1;
     string output_path  = 2;
+    uint64 seconds      = 3;
 }
 
 message ProfileResponse {

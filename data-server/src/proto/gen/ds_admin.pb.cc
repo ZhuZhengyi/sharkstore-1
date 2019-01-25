@@ -340,6 +340,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, ptype_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, output_path_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, seconds_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -369,7 +370,7 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTR
   { 141, -1, sizeof(FlushDBRequest)},
   { 147, -1, sizeof(FlushDBResponse)},
   { 152, -1, sizeof(ProfileRequest)},
-  { 159, -1, sizeof(ProfileResponse)},
+  { 160, -1, sizeof(ProfileResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -577,18 +578,19 @@ void AddDescriptorsImpl() {
       "INSERT\020\001\022\n\n\006SELECT\020\002\022\020\n\014PONIT_SELECT\020\003\022\020"
       "\n\014RANGE_SELECT\020\004\"#\n\023GetPendingsResponse\022"
       "\014\n\004desc\030\001 \001(\t\"\036\n\016FlushDBRequest\022\014\n\004wait\030"
-      "\001 \001(\010\"\021\n\017FlushDBResponse\"~\n\016ProfileReque"
-      "st\0225\n\005ptype\030\001 \001(\0162&.ds_adminpb.ProfileRe"
-      "quest.ProfileType\022\023\n\013output_path\030\002 \001(\t\" "
-      "\n\013ProfileType\022\007\n\003CPU\020\000\022\010\n\004HEAP\020\001\"\021\n\017Prof"
-      "ileResponse*\245\001\n\tAdminType\022\013\n\007UNKNOWN\020\000\022\016"
-      "\n\nSET_CONFIG\020\001\022\016\n\nGET_CONFIG\020\002\022\014\n\010GET_IN"
-      "FO\020\003\022\017\n\013FORCE_SPLIT\020\004\022\016\n\nCOMPACTION\020\005\022\017\n"
-      "\013CLEAR_QUEUE\020\006\022\020\n\014GET_PENDINGS\020\007\022\014\n\010FLUS"
-      "H_DB\020\010\022\013\n\007PROFILE\020\tb\006proto3"
+      "\001 \001(\010\"\021\n\017FlushDBResponse\"\217\001\n\016ProfileRequ"
+      "est\0225\n\005ptype\030\001 \001(\0162&.ds_adminpb.ProfileR"
+      "equest.ProfileType\022\023\n\013output_path\030\002 \001(\t\022"
+      "\017\n\007seconds\030\003 \001(\004\" \n\013ProfileType\022\007\n\003CPU\020\000"
+      "\022\010\n\004HEAP\020\001\"\021\n\017ProfileResponse*\245\001\n\tAdminT"
+      "ype\022\013\n\007UNKNOWN\020\000\022\016\n\nSET_CONFIG\020\001\022\016\n\nGET_"
+      "CONFIG\020\002\022\014\n\010GET_INFO\020\003\022\017\n\013FORCE_SPLIT\020\004\022"
+      "\016\n\nCOMPACTION\020\005\022\017\n\013CLEAR_QUEUE\020\006\022\020\n\014GET_"
+      "PENDINGS\020\007\022\014\n\010FLUSH_DB\020\010\022\013\n\007PROFILE\020\tb\006p"
+      "roto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 2627);
+      descriptor, 2645);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "ds_admin.proto", &protobuf_RegisterTypes);
 }
@@ -8781,6 +8783,7 @@ void FlushDBResponse::InternalSwap(FlushDBResponse* other) {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ProfileRequest::kPtypeFieldNumber;
 const int ProfileRequest::kOutputPathFieldNumber;
+const int ProfileRequest::kSecondsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ProfileRequest::ProfileRequest()
@@ -8800,13 +8803,17 @@ ProfileRequest::ProfileRequest(const ProfileRequest& from)
   if (from.output_path().size() > 0) {
     output_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.output_path_);
   }
-  ptype_ = from.ptype_;
+  ::memcpy(&seconds_, &from.seconds_,
+    static_cast<size_t>(reinterpret_cast<char*>(&ptype_) -
+    reinterpret_cast<char*>(&seconds_)) + sizeof(ptype_));
   // @@protoc_insertion_point(copy_constructor:ds_adminpb.ProfileRequest)
 }
 
 void ProfileRequest::SharedCtor() {
   output_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ptype_ = 0;
+  ::memset(&seconds_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ptype_) -
+      reinterpret_cast<char*>(&seconds_)) + sizeof(ptype_));
   _cached_size_ = 0;
 }
 
@@ -8849,7 +8856,9 @@ void ProfileRequest::Clear() {
   (void) cached_has_bits;
 
   output_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ptype_ = 0;
+  ::memset(&seconds_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&ptype_) -
+      reinterpret_cast<char*>(&seconds_)) + sizeof(ptype_));
   _internal_metadata_.Clear();
 }
 
@@ -8888,6 +8897,20 @@ bool ProfileRequest::MergePartialFromCodedStream(
             this->output_path().data(), static_cast<int>(this->output_path().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "ds_adminpb.ProfileRequest.output_path"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // uint64 seconds = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u /* 24 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                 input, &seconds_)));
         } else {
           goto handle_unusual;
         }
@@ -8936,6 +8959,11 @@ void ProfileRequest::SerializeWithCachedSizes(
       2, this->output_path(), output);
   }
 
+  // uint64 seconds = 3;
+  if (this->seconds() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteUInt64(3, this->seconds(), output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -8967,6 +8995,11 @@ void ProfileRequest::SerializeWithCachedSizes(
         2, this->output_path(), target);
   }
 
+  // uint64 seconds = 3;
+  if (this->seconds() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(3, this->seconds(), target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -8989,6 +9022,13 @@ size_t ProfileRequest::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->output_path());
+  }
+
+  // uint64 seconds = 3;
+  if (this->seconds() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::UInt64Size(
+        this->seconds());
   }
 
   // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
@@ -9030,6 +9070,9 @@ void ProfileRequest::MergeFrom(const ProfileRequest& from) {
 
     output_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.output_path_);
   }
+  if (from.seconds() != 0) {
+    set_seconds(from.seconds());
+  }
   if (from.ptype() != 0) {
     set_ptype(from.ptype());
   }
@@ -9060,6 +9103,7 @@ void ProfileRequest::Swap(ProfileRequest* other) {
 void ProfileRequest::InternalSwap(ProfileRequest* other) {
   using std::swap;
   output_path_.Swap(&other->output_path_);
+  swap(seconds_, other->seconds_);
   swap(ptype_, other->ptype_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
@@ -9138,6 +9182,20 @@ void ProfileRequest::set_allocated_output_path(::std::string* output_path) {
   }
   output_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), output_path);
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.ProfileRequest.output_path)
+}
+
+// uint64 seconds = 3;
+void ProfileRequest::clear_seconds() {
+  seconds_ = GOOGLE_ULONGLONG(0);
+}
+::google::protobuf::uint64 ProfileRequest::seconds() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.seconds)
+  return seconds_;
+}
+void ProfileRequest::set_seconds(::google::protobuf::uint64 value) {
+  
+  seconds_ = value;
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.seconds)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

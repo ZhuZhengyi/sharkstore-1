@@ -10,7 +10,7 @@
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#ifdef USE_GPERF
+#ifdef SHARK_USE_GPERF
 #include <gperftools/profiler.h>
 #endif
 
@@ -353,7 +353,7 @@ static void sig_hup_handler(int sig) { FLOG_INFO("catch signal %d", sig); }
 
 static void sig_usr_handler(int sig) {
     if (sig == SIGUSR1) {
-#ifdef USE_GPERF
+#ifdef SHARK_USE_GPERF
         static bool prof_trigger = false;
         if (!prof_trigger) {
             ProfilerStart("/tmp/ds.pprof");
