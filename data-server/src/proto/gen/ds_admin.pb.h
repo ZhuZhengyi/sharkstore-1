@@ -89,6 +89,12 @@ extern GetPendingsRequestDefaultTypeInternal _GetPendingsRequest_default_instanc
 class GetPendingsResponse;
 class GetPendingsResponseDefaultTypeInternal;
 extern GetPendingsResponseDefaultTypeInternal _GetPendingsResponse_default_instance_;
+class ProfileRequest;
+class ProfileRequestDefaultTypeInternal;
+extern ProfileRequestDefaultTypeInternal _ProfileRequest_default_instance_;
+class ProfileResponse;
+class ProfileResponseDefaultTypeInternal;
+extern ProfileResponseDefaultTypeInternal _ProfileResponse_default_instance_;
 class SetConfigRequest;
 class SetConfigRequestDefaultTypeInternal;
 extern SetConfigRequestDefaultTypeInternal _SetConfigRequest_default_instance_;
@@ -180,6 +186,27 @@ inline bool GetPendingsRequest_PendingType_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<GetPendingsRequest_PendingType>(
     GetPendingsRequest_PendingType_descriptor(), name, value);
 }
+enum ProfileRequest_ProfileType {
+  ProfileRequest_ProfileType_CPU = 0,
+  ProfileRequest_ProfileType_HEAP = 1,
+  ProfileRequest_ProfileType_ProfileRequest_ProfileType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  ProfileRequest_ProfileType_ProfileRequest_ProfileType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool ProfileRequest_ProfileType_IsValid(int value);
+const ProfileRequest_ProfileType ProfileRequest_ProfileType_ProfileType_MIN = ProfileRequest_ProfileType_CPU;
+const ProfileRequest_ProfileType ProfileRequest_ProfileType_ProfileType_MAX = ProfileRequest_ProfileType_HEAP;
+const int ProfileRequest_ProfileType_ProfileType_ARRAYSIZE = ProfileRequest_ProfileType_ProfileType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* ProfileRequest_ProfileType_descriptor();
+inline const ::std::string& ProfileRequest_ProfileType_Name(ProfileRequest_ProfileType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    ProfileRequest_ProfileType_descriptor(), value);
+}
+inline bool ProfileRequest_ProfileType_Parse(
+    const ::std::string& name, ProfileRequest_ProfileType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ProfileRequest_ProfileType>(
+    ProfileRequest_ProfileType_descriptor(), name, value);
+}
 enum AdminType {
   UNKNOWN = 0,
   SET_CONFIG = 1,
@@ -190,12 +217,13 @@ enum AdminType {
   CLEAR_QUEUE = 6,
   GET_PENDINGS = 7,
   FLUSH_DB = 8,
+  PROFILE = 9,
   AdminType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   AdminType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool AdminType_IsValid(int value);
 const AdminType AdminType_MIN = UNKNOWN;
-const AdminType AdminType_MAX = FLUSH_DB;
+const AdminType AdminType_MAX = PROFILE;
 const int AdminType_ARRAYSIZE = AdminType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* AdminType_descriptor();
@@ -515,6 +543,15 @@ class AdminRequest : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::ds_adminpb::FlushDBRequest* release_flush_db_req();
   void set_allocated_flush_db_req(::ds_adminpb::FlushDBRequest* flush_db_req);
 
+  // .ds_adminpb.ProfileRequest profile_req = 18;
+  bool has_profile_req() const;
+  void clear_profile_req();
+  static const int kProfileReqFieldNumber = 18;
+  const ::ds_adminpb::ProfileRequest& profile_req() const;
+  ::ds_adminpb::ProfileRequest* mutable_profile_req();
+  ::ds_adminpb::ProfileRequest* release_profile_req();
+  void set_allocated_profile_req(::ds_adminpb::ProfileRequest* profile_req);
+
   // .ds_adminpb.AdminType typ = 1;
   void clear_typ();
   static const int kTypFieldNumber = 1;
@@ -534,6 +571,7 @@ class AdminRequest : public ::google::protobuf::Message /* @@protoc_insertion_po
   ::ds_adminpb::ClearQueueRequest* clear_queue_req_;
   ::ds_adminpb::GetPendingsRequest* get_pendings_req_;
   ::ds_adminpb::FlushDBRequest* flush_db_req_;
+  ::ds_adminpb::ProfileRequest* profile_req_;
   int typ_;
   mutable int _cached_size_;
   friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
@@ -707,6 +745,15 @@ class AdminResponse : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::ds_adminpb::FlushDBResponse* release_flush_db_resp();
   void set_allocated_flush_db_resp(::ds_adminpb::FlushDBResponse* flush_db_resp);
 
+  // .ds_adminpb.ProfileResponse profile_resp = 18;
+  bool has_profile_resp() const;
+  void clear_profile_resp();
+  static const int kProfileRespFieldNumber = 18;
+  const ::ds_adminpb::ProfileResponse& profile_resp() const;
+  ::ds_adminpb::ProfileResponse* mutable_profile_resp();
+  ::ds_adminpb::ProfileResponse* release_profile_resp();
+  void set_allocated_profile_resp(::ds_adminpb::ProfileResponse* profile_resp);
+
   // uint32 code = 1;
   void clear_code();
   static const int kCodeFieldNumber = 1;
@@ -726,6 +773,7 @@ class AdminResponse : public ::google::protobuf::Message /* @@protoc_insertion_p
   ::ds_adminpb::ClearQueueResponse* clear_queue_resp_;
   ::ds_adminpb::GetPendingsResponse* get_pendings_resp_;
   ::ds_adminpb::FlushDBResponse* flush_db_resp_;
+  ::ds_adminpb::ProfileResponse* profile_resp_;
   ::google::protobuf::uint32 code_;
   mutable int _cached_size_;
   friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
@@ -2657,6 +2705,234 @@ class FlushDBResponse : public ::google::protobuf::Message /* @@protoc_insertion
   mutable int _cached_size_;
   friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class ProfileRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ds_adminpb.ProfileRequest) */ {
+ public:
+  ProfileRequest();
+  virtual ~ProfileRequest();
+
+  ProfileRequest(const ProfileRequest& from);
+
+  inline ProfileRequest& operator=(const ProfileRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ProfileRequest(ProfileRequest&& from) noexcept
+    : ProfileRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ProfileRequest& operator=(ProfileRequest&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ProfileRequest& default_instance();
+
+  static inline const ProfileRequest* internal_default_instance() {
+    return reinterpret_cast<const ProfileRequest*>(
+               &_ProfileRequest_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    21;
+
+  void Swap(ProfileRequest* other);
+  friend void swap(ProfileRequest& a, ProfileRequest& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ProfileRequest* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ProfileRequest* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ProfileRequest& from);
+  void MergeFrom(const ProfileRequest& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ProfileRequest* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef ProfileRequest_ProfileType ProfileType;
+  static const ProfileType CPU =
+    ProfileRequest_ProfileType_CPU;
+  static const ProfileType HEAP =
+    ProfileRequest_ProfileType_HEAP;
+  static inline bool ProfileType_IsValid(int value) {
+    return ProfileRequest_ProfileType_IsValid(value);
+  }
+  static const ProfileType ProfileType_MIN =
+    ProfileRequest_ProfileType_ProfileType_MIN;
+  static const ProfileType ProfileType_MAX =
+    ProfileRequest_ProfileType_ProfileType_MAX;
+  static const int ProfileType_ARRAYSIZE =
+    ProfileRequest_ProfileType_ProfileType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  ProfileType_descriptor() {
+    return ProfileRequest_ProfileType_descriptor();
+  }
+  static inline const ::std::string& ProfileType_Name(ProfileType value) {
+    return ProfileRequest_ProfileType_Name(value);
+  }
+  static inline bool ProfileType_Parse(const ::std::string& name,
+      ProfileType* value) {
+    return ProfileRequest_ProfileType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // string output_path = 2;
+  void clear_output_path();
+  static const int kOutputPathFieldNumber = 2;
+  const ::std::string& output_path() const;
+  void set_output_path(const ::std::string& value);
+  #if LANG_CXX11
+  void set_output_path(::std::string&& value);
+  #endif
+  void set_output_path(const char* value);
+  void set_output_path(const char* value, size_t size);
+  ::std::string* mutable_output_path();
+  ::std::string* release_output_path();
+  void set_allocated_output_path(::std::string* output_path);
+
+  // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+  void clear_ptype();
+  static const int kPtypeFieldNumber = 1;
+  ::ds_adminpb::ProfileRequest_ProfileType ptype() const;
+  void set_ptype(::ds_adminpb::ProfileRequest_ProfileType value);
+
+  // @@protoc_insertion_point(class_scope:ds_adminpb.ProfileRequest)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr output_path_;
+  int ptype_;
+  mutable int _cached_size_;
+  friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class ProfileResponse : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:ds_adminpb.ProfileResponse) */ {
+ public:
+  ProfileResponse();
+  virtual ~ProfileResponse();
+
+  ProfileResponse(const ProfileResponse& from);
+
+  inline ProfileResponse& operator=(const ProfileResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  ProfileResponse(ProfileResponse&& from) noexcept
+    : ProfileResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ProfileResponse& operator=(ProfileResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ProfileResponse& default_instance();
+
+  static inline const ProfileResponse* internal_default_instance() {
+    return reinterpret_cast<const ProfileResponse*>(
+               &_ProfileResponse_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    22;
+
+  void Swap(ProfileResponse* other);
+  friend void swap(ProfileResponse& a, ProfileResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ProfileResponse* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  ProfileResponse* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const ProfileResponse& from);
+  void MergeFrom(const ProfileResponse& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(ProfileResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:ds_adminpb.ProfileResponse)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  mutable int _cached_size_;
+  friend struct protobuf_ds_5fadmin_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -3128,6 +3404,46 @@ inline void AdminRequest::set_allocated_flush_db_req(::ds_adminpb::FlushDBReques
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminRequest.flush_db_req)
 }
 
+// .ds_adminpb.ProfileRequest profile_req = 18;
+inline bool AdminRequest::has_profile_req() const {
+  return this != internal_default_instance() && profile_req_ != NULL;
+}
+inline void AdminRequest::clear_profile_req() {
+  if (GetArenaNoVirtual() == NULL && profile_req_ != NULL) delete profile_req_;
+  profile_req_ = NULL;
+}
+inline const ::ds_adminpb::ProfileRequest& AdminRequest::profile_req() const {
+  const ::ds_adminpb::ProfileRequest* p = profile_req_;
+  // @@protoc_insertion_point(field_get:ds_adminpb.AdminRequest.profile_req)
+  return p != NULL ? *p : *reinterpret_cast<const ::ds_adminpb::ProfileRequest*>(
+      &::ds_adminpb::_ProfileRequest_default_instance_);
+}
+inline ::ds_adminpb::ProfileRequest* AdminRequest::mutable_profile_req() {
+  
+  if (profile_req_ == NULL) {
+    profile_req_ = new ::ds_adminpb::ProfileRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.AdminRequest.profile_req)
+  return profile_req_;
+}
+inline ::ds_adminpb::ProfileRequest* AdminRequest::release_profile_req() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.AdminRequest.profile_req)
+  
+  ::ds_adminpb::ProfileRequest* temp = profile_req_;
+  profile_req_ = NULL;
+  return temp;
+}
+inline void AdminRequest::set_allocated_profile_req(::ds_adminpb::ProfileRequest* profile_req) {
+  delete profile_req_;
+  profile_req_ = profile_req;
+  if (profile_req) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminRequest.profile_req)
+}
+
 // -------------------------------------------------------------------
 
 // AdminResponse
@@ -3517,6 +3833,46 @@ inline void AdminResponse::set_allocated_flush_db_resp(::ds_adminpb::FlushDBResp
     
   }
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminResponse.flush_db_resp)
+}
+
+// .ds_adminpb.ProfileResponse profile_resp = 18;
+inline bool AdminResponse::has_profile_resp() const {
+  return this != internal_default_instance() && profile_resp_ != NULL;
+}
+inline void AdminResponse::clear_profile_resp() {
+  if (GetArenaNoVirtual() == NULL && profile_resp_ != NULL) delete profile_resp_;
+  profile_resp_ = NULL;
+}
+inline const ::ds_adminpb::ProfileResponse& AdminResponse::profile_resp() const {
+  const ::ds_adminpb::ProfileResponse* p = profile_resp_;
+  // @@protoc_insertion_point(field_get:ds_adminpb.AdminResponse.profile_resp)
+  return p != NULL ? *p : *reinterpret_cast<const ::ds_adminpb::ProfileResponse*>(
+      &::ds_adminpb::_ProfileResponse_default_instance_);
+}
+inline ::ds_adminpb::ProfileResponse* AdminResponse::mutable_profile_resp() {
+  
+  if (profile_resp_ == NULL) {
+    profile_resp_ = new ::ds_adminpb::ProfileResponse;
+  }
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.AdminResponse.profile_resp)
+  return profile_resp_;
+}
+inline ::ds_adminpb::ProfileResponse* AdminResponse::release_profile_resp() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.AdminResponse.profile_resp)
+  
+  ::ds_adminpb::ProfileResponse* temp = profile_resp_;
+  profile_resp_ = NULL;
+  return temp;
+}
+inline void AdminResponse::set_allocated_profile_resp(::ds_adminpb::ProfileResponse* profile_resp) {
+  delete profile_resp_;
+  profile_resp_ = profile_resp;
+  if (profile_resp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminResponse.profile_resp)
 }
 
 // -------------------------------------------------------------------
@@ -4324,10 +4680,89 @@ inline void FlushDBRequest::set_wait(bool value) {
 
 // FlushDBResponse
 
+// -------------------------------------------------------------------
+
+// ProfileRequest
+
+// .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+inline void ProfileRequest::clear_ptype() {
+  ptype_ = 0;
+}
+inline ::ds_adminpb::ProfileRequest_ProfileType ProfileRequest::ptype() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.ptype)
+  return static_cast< ::ds_adminpb::ProfileRequest_ProfileType >(ptype_);
+}
+inline void ProfileRequest::set_ptype(::ds_adminpb::ProfileRequest_ProfileType value) {
+  
+  ptype_ = value;
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.ptype)
+}
+
+// string output_path = 2;
+inline void ProfileRequest::clear_output_path() {
+  output_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ProfileRequest::output_path() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.output_path)
+  return output_path_.GetNoArena();
+}
+inline void ProfileRequest::set_output_path(const ::std::string& value) {
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.output_path)
+}
+#if LANG_CXX11
+inline void ProfileRequest::set_output_path(::std::string&& value) {
+  
+  output_path_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ds_adminpb.ProfileRequest.output_path)
+}
+#endif
+inline void ProfileRequest::set_output_path(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ds_adminpb.ProfileRequest.output_path)
+}
+inline void ProfileRequest::set_output_path(const char* value, size_t size) {
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ds_adminpb.ProfileRequest.output_path)
+}
+inline ::std::string* ProfileRequest::mutable_output_path() {
+  
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.ProfileRequest.output_path)
+  return output_path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ProfileRequest::release_output_path() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.ProfileRequest.output_path)
+  
+  return output_path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ProfileRequest::set_allocated_output_path(::std::string* output_path) {
+  if (output_path != NULL) {
+    
+  } else {
+    
+  }
+  output_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), output_path);
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.ProfileRequest.output_path)
+}
+
+// -------------------------------------------------------------------
+
+// ProfileResponse
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -4391,6 +4826,11 @@ template <> struct is_proto_enum< ::ds_adminpb::GetPendingsRequest_PendingType> 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::ds_adminpb::GetPendingsRequest_PendingType>() {
   return ::ds_adminpb::GetPendingsRequest_PendingType_descriptor();
+}
+template <> struct is_proto_enum< ::ds_adminpb::ProfileRequest_ProfileType> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::ds_adminpb::ProfileRequest_ProfileType>() {
+  return ::ds_adminpb::ProfileRequest_ProfileType_descriptor();
 }
 template <> struct is_proto_enum< ::ds_adminpb::AdminType> : ::google::protobuf::internal::true_type {};
 template <>

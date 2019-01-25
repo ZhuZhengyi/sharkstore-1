@@ -123,14 +123,24 @@ public:
  ::google::protobuf::internal::ExplicitlyConstructed<FlushDBResponse>
      _instance;
 } _FlushDBResponse_default_instance_;
+class ProfileRequestDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<ProfileRequest>
+     _instance;
+} _ProfileRequest_default_instance_;
+class ProfileResponseDefaultTypeInternal {
+public:
+ ::google::protobuf::internal::ExplicitlyConstructed<ProfileResponse>
+     _instance;
+} _ProfileResponse_default_instance_;
 
 namespace protobuf_ds_5fadmin_2eproto {
 
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[21];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[4];
+::google::protobuf::Metadata file_level_metadata[23];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[5];
 
 }  // namespace
 
@@ -145,6 +155,8 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
+  { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
   { NULL, NULL, 0, -1, -1, -1, -1, NULL, false },
@@ -192,6 +204,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminRequest, clear_queue_req_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminRequest, get_pendings_req_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminRequest, flush_db_req_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminRequest, profile_req_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -207,6 +220,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminResponse, clear_queue_resp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminResponse, get_pendings_resp_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminResponse, flush_db_resp_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AdminResponse, profile_resp_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ConfigKey, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -319,29 +333,43 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_ATTRIBUTE_SECTION
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, ptype_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileRequest, output_path_),
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ProfileResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(AdminAuth)},
   { 8, -1, sizeof(AdminRequest)},
-  { 23, -1, sizeof(AdminResponse)},
-  { 38, -1, sizeof(ConfigKey)},
-  { 45, -1, sizeof(ConfigItem)},
-  { 52, -1, sizeof(SetConfigRequest)},
-  { 58, -1, sizeof(SetConfigResponse)},
-  { 63, -1, sizeof(GetConfigRequest)},
-  { 69, -1, sizeof(GetConfigResponse)},
-  { 75, -1, sizeof(GetInfoRequest)},
-  { 81, -1, sizeof(GetInfoResponse)},
-  { 87, -1, sizeof(ForceSplitRequest)},
-  { 94, -1, sizeof(ForceSplitResponse)},
-  { 100, -1, sizeof(CompactionRequest)},
-  { 107, -1, sizeof(CompactionResponse)},
-  { 114, -1, sizeof(ClearQueueRequest)},
-  { 120, -1, sizeof(ClearQueueResponse)},
-  { 126, -1, sizeof(GetPendingsRequest)},
-  { 133, -1, sizeof(GetPendingsResponse)},
-  { 139, -1, sizeof(FlushDBRequest)},
-  { 145, -1, sizeof(FlushDBResponse)},
+  { 24, -1, sizeof(AdminResponse)},
+  { 40, -1, sizeof(ConfigKey)},
+  { 47, -1, sizeof(ConfigItem)},
+  { 54, -1, sizeof(SetConfigRequest)},
+  { 60, -1, sizeof(SetConfigResponse)},
+  { 65, -1, sizeof(GetConfigRequest)},
+  { 71, -1, sizeof(GetConfigResponse)},
+  { 77, -1, sizeof(GetInfoRequest)},
+  { 83, -1, sizeof(GetInfoResponse)},
+  { 89, -1, sizeof(ForceSplitRequest)},
+  { 96, -1, sizeof(ForceSplitResponse)},
+  { 102, -1, sizeof(CompactionRequest)},
+  { 109, -1, sizeof(CompactionResponse)},
+  { 116, -1, sizeof(ClearQueueRequest)},
+  { 122, -1, sizeof(ClearQueueResponse)},
+  { 128, -1, sizeof(GetPendingsRequest)},
+  { 135, -1, sizeof(GetPendingsResponse)},
+  { 141, -1, sizeof(FlushDBRequest)},
+  { 147, -1, sizeof(FlushDBResponse)},
+  { 152, -1, sizeof(ProfileRequest)},
+  { 159, -1, sizeof(ProfileResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -366,6 +394,8 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&_GetPendingsResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FlushDBRequest_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_FlushDBResponse_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ProfileRequest_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&_ProfileResponse_default_instance_),
 };
 
 namespace {
@@ -386,7 +416,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 21);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 23);
 }
 
 }  // namespace
@@ -436,7 +466,11 @@ void TableStruct::InitDefaultsImpl() {
   ::google::protobuf::internal::OnShutdownDestroyMessage(
       &_FlushDBRequest_default_instance_);_FlushDBResponse_default_instance_._instance.DefaultConstruct();
   ::google::protobuf::internal::OnShutdownDestroyMessage(
-      &_FlushDBResponse_default_instance_);_AdminRequest_default_instance_._instance.get_mutable()->auth_ = const_cast< ::ds_adminpb::AdminAuth*>(
+      &_FlushDBResponse_default_instance_);_ProfileRequest_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_ProfileRequest_default_instance_);_ProfileResponse_default_instance_._instance.DefaultConstruct();
+  ::google::protobuf::internal::OnShutdownDestroyMessage(
+      &_ProfileResponse_default_instance_);_AdminRequest_default_instance_._instance.get_mutable()->auth_ = const_cast< ::ds_adminpb::AdminAuth*>(
       ::ds_adminpb::AdminAuth::internal_default_instance());
   _AdminRequest_default_instance_._instance.get_mutable()->set_cfg_req_ = const_cast< ::ds_adminpb::SetConfigRequest*>(
       ::ds_adminpb::SetConfigRequest::internal_default_instance());
@@ -454,6 +488,8 @@ void TableStruct::InitDefaultsImpl() {
       ::ds_adminpb::GetPendingsRequest::internal_default_instance());
   _AdminRequest_default_instance_._instance.get_mutable()->flush_db_req_ = const_cast< ::ds_adminpb::FlushDBRequest*>(
       ::ds_adminpb::FlushDBRequest::internal_default_instance());
+  _AdminRequest_default_instance_._instance.get_mutable()->profile_req_ = const_cast< ::ds_adminpb::ProfileRequest*>(
+      ::ds_adminpb::ProfileRequest::internal_default_instance());
   _AdminResponse_default_instance_._instance.get_mutable()->set_cfg_resp_ = const_cast< ::ds_adminpb::SetConfigResponse*>(
       ::ds_adminpb::SetConfigResponse::internal_default_instance());
   _AdminResponse_default_instance_._instance.get_mutable()->get_cfg_resp_ = const_cast< ::ds_adminpb::GetConfigResponse*>(
@@ -470,6 +506,8 @@ void TableStruct::InitDefaultsImpl() {
       ::ds_adminpb::GetPendingsResponse::internal_default_instance());
   _AdminResponse_default_instance_._instance.get_mutable()->flush_db_resp_ = const_cast< ::ds_adminpb::FlushDBResponse*>(
       ::ds_adminpb::FlushDBResponse::internal_default_instance());
+  _AdminResponse_default_instance_._instance.get_mutable()->profile_resp_ = const_cast< ::ds_adminpb::ProfileResponse*>(
+      ::ds_adminpb::ProfileResponse::internal_default_instance());
   _ConfigItem_default_instance_._instance.get_mutable()->key_ = const_cast< ::ds_adminpb::ConfigKey*>(
       ::ds_adminpb::ConfigKey::internal_default_instance());
 }
@@ -485,7 +523,7 @@ void AddDescriptorsImpl() {
       "\n\016ds_admin.proto\022\nds_adminpb\"x\n\tAdminAut"
       "h\0220\n\006method\030\001 \001(\0162 .ds_adminpb.AdminAuth"
       ".AuthMethod\022\r\n\005epoch\030\002 \001(\003\022\014\n\004sign\030\003 \001(\t"
-      "\"\034\n\nAuthMethod\022\016\n\nMD5_DIGEST\020\000\"\202\004\n\014Admin"
+      "\"\034\n\nAuthMethod\022\016\n\nMD5_DIGEST\020\000\"\263\004\n\014Admin"
       "Request\022\"\n\003typ\030\001 \001(\0162\025.ds_adminpb.AdminT"
       "ype\022#\n\004auth\030\002 \001(\0132\025.ds_adminpb.AdminAuth"
       "\0221\n\013set_cfg_req\030\n \001(\0132\034.ds_adminpb.SetCo"
@@ -498,53 +536,59 @@ void AddDescriptorsImpl() {
       "eq\030\017 \001(\0132\035.ds_adminpb.ClearQueueRequest\022"
       "8\n\020get_pendings_req\030\020 \001(\0132\036.ds_adminpb.G"
       "etPendingsRequest\0220\n\014flush_db_req\030\021 \001(\0132"
-      "\032.ds_adminpb.FlushDBRequest\"\357\003\n\rAdminRes"
-      "ponse\022\014\n\004code\030\001 \001(\r\022\021\n\terror_msg\030\002 \001(\t\0223"
-      "\n\014set_cfg_resp\030\n \001(\0132\035.ds_adminpb.SetCon"
-      "figResponse\0223\n\014get_cfg_resp\030\013 \001(\0132\035.ds_a"
-      "dminpb.GetConfigResponse\0226\n\021get_info_res"
-      "ponse\030\014 \001(\0132\033.ds_adminpb.GetInfoResponse"
-      "\0228\n\020force_split_resp\030\r \001(\0132\036.ds_adminpb."
-      "ForceSplitResponse\0227\n\017compaction_resp\030\016 "
-      "\001(\0132\036.ds_adminpb.CompactionResponse\0228\n\020c"
-      "lear_queue_resp\030\017 \001(\0132\036.ds_adminpb.Clear"
-      "QueueResponse\022:\n\021get_pendings_resp\030\020 \001(\013"
-      "2\037.ds_adminpb.GetPendingsResponse\0222\n\rflu"
-      "sh_db_resp\030\021 \001(\0132\033.ds_adminpb.FlushDBRes"
-      "ponse\"*\n\tConfigKey\022\017\n\007section\030\001 \001(\t\022\014\n\004n"
-      "ame\030\002 \001(\t\"\?\n\nConfigItem\022\"\n\003key\030\001 \001(\0132\025.d"
-      "s_adminpb.ConfigKey\022\r\n\005value\030\002 \001(\t\";\n\020Se"
-      "tConfigRequest\022\'\n\007configs\030\001 \003(\0132\026.ds_adm"
-      "inpb.ConfigItem\"\023\n\021SetConfigResponse\"6\n\020"
-      "GetConfigRequest\022\"\n\003key\030\001 \003(\0132\025.ds_admin"
-      "pb.ConfigKey\"<\n\021GetConfigResponse\022\'\n\007con"
-      "figs\030\001 \003(\0132\026.ds_adminpb.ConfigItem\"\036\n\016Ge"
-      "tInfoRequest\022\014\n\004path\030\001 \001(\t\"\037\n\017GetInfoRes"
-      "ponse\022\014\n\004data\030\001 \001(\t\"6\n\021ForceSplitRequest"
-      "\022\020\n\010range_id\030\001 \001(\004\022\017\n\007version\030\002 \001(\004\"\'\n\022F"
-      "orceSplitResponse\022\021\n\tsplit_key\030\001 \001(\014\"=\n\021"
-      "CompactionRequest\022\020\n\010range_id\030\001 \001(\004\022\026\n\016t"
-      "ransaction_id\030\002 \001(\003\"8\n\022CompactionRespons"
-      "e\022\021\n\tbegin_key\030\001 \001(\014\022\017\n\007end_key\030\002 \001(\014\"\210\001"
-      "\n\021ClearQueueRequest\022;\n\nqueue_type\030\001 \001(\0162"
-      "\'.ds_adminpb.ClearQueueRequest.QueueType"
-      "\"6\n\tQueueType\022\007\n\003ALL\020\000\022\017\n\013FAST_WORKER\020\001\022"
-      "\017\n\013SLOW_WORKER\020\002\"%\n\022ClearQueueResponse\022\017"
-      "\n\007cleared\030\001 \001(\004\"\262\001\n\022GetPendingsRequest\0229"
-      "\n\005ptype\030\001 \001(\0162*.ds_adminpb.GetPendingsRe"
-      "quest.PendingType\022\r\n\005count\030\002 \001(\004\"R\n\013Pend"
-      "ingType\022\007\n\003ALL\020\000\022\n\n\006INSERT\020\001\022\n\n\006SELECT\020\002"
-      "\022\020\n\014PONIT_SELECT\020\003\022\020\n\014RANGE_SELECT\020\004\"#\n\023"
-      "GetPendingsResponse\022\014\n\004desc\030\001 \001(\t\"\036\n\016Flu"
-      "shDBRequest\022\014\n\004wait\030\001 \001(\010\"\021\n\017FlushDBResp"
-      "onse*\230\001\n\tAdminType\022\013\n\007UNKNOWN\020\000\022\016\n\nSET_C"
-      "ONFIG\020\001\022\016\n\nGET_CONFIG\020\002\022\014\n\010GET_INFO\020\003\022\017\n"
-      "\013FORCE_SPLIT\020\004\022\016\n\nCOMPACTION\020\005\022\017\n\013CLEAR_"
-      "QUEUE\020\006\022\020\n\014GET_PENDINGS\020\007\022\014\n\010FLUSH_DB\020\010b"
-      "\006proto3"
+      "\032.ds_adminpb.FlushDBRequest\022/\n\013profile_r"
+      "eq\030\022 \001(\0132\032.ds_adminpb.ProfileRequest\"\242\004\n"
+      "\rAdminResponse\022\014\n\004code\030\001 \001(\r\022\021\n\terror_ms"
+      "g\030\002 \001(\t\0223\n\014set_cfg_resp\030\n \001(\0132\035.ds_admin"
+      "pb.SetConfigResponse\0223\n\014get_cfg_resp\030\013 \001"
+      "(\0132\035.ds_adminpb.GetConfigResponse\0226\n\021get"
+      "_info_response\030\014 \001(\0132\033.ds_adminpb.GetInf"
+      "oResponse\0228\n\020force_split_resp\030\r \001(\0132\036.ds"
+      "_adminpb.ForceSplitResponse\0227\n\017compactio"
+      "n_resp\030\016 \001(\0132\036.ds_adminpb.CompactionResp"
+      "onse\0228\n\020clear_queue_resp\030\017 \001(\0132\036.ds_admi"
+      "npb.ClearQueueResponse\022:\n\021get_pendings_r"
+      "esp\030\020 \001(\0132\037.ds_adminpb.GetPendingsRespon"
+      "se\0222\n\rflush_db_resp\030\021 \001(\0132\033.ds_adminpb.F"
+      "lushDBResponse\0221\n\014profile_resp\030\022 \001(\0132\033.d"
+      "s_adminpb.ProfileResponse\"*\n\tConfigKey\022\017"
+      "\n\007section\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\"\?\n\nConfigI"
+      "tem\022\"\n\003key\030\001 \001(\0132\025.ds_adminpb.ConfigKey\022"
+      "\r\n\005value\030\002 \001(\t\";\n\020SetConfigRequest\022\'\n\007co"
+      "nfigs\030\001 \003(\0132\026.ds_adminpb.ConfigItem\"\023\n\021S"
+      "etConfigResponse\"6\n\020GetConfigRequest\022\"\n\003"
+      "key\030\001 \003(\0132\025.ds_adminpb.ConfigKey\"<\n\021GetC"
+      "onfigResponse\022\'\n\007configs\030\001 \003(\0132\026.ds_admi"
+      "npb.ConfigItem\"\036\n\016GetInfoRequest\022\014\n\004path"
+      "\030\001 \001(\t\"\037\n\017GetInfoResponse\022\014\n\004data\030\001 \001(\t\""
+      "6\n\021ForceSplitRequest\022\020\n\010range_id\030\001 \001(\004\022\017"
+      "\n\007version\030\002 \001(\004\"\'\n\022ForceSplitResponse\022\021\n"
+      "\tsplit_key\030\001 \001(\014\"=\n\021CompactionRequest\022\020\n"
+      "\010range_id\030\001 \001(\004\022\026\n\016transaction_id\030\002 \001(\003\""
+      "8\n\022CompactionResponse\022\021\n\tbegin_key\030\001 \001(\014"
+      "\022\017\n\007end_key\030\002 \001(\014\"\210\001\n\021ClearQueueRequest\022"
+      ";\n\nqueue_type\030\001 \001(\0162\'.ds_adminpb.ClearQu"
+      "eueRequest.QueueType\"6\n\tQueueType\022\007\n\003ALL"
+      "\020\000\022\017\n\013FAST_WORKER\020\001\022\017\n\013SLOW_WORKER\020\002\"%\n\022"
+      "ClearQueueResponse\022\017\n\007cleared\030\001 \001(\004\"\262\001\n\022"
+      "GetPendingsRequest\0229\n\005ptype\030\001 \001(\0162*.ds_a"
+      "dminpb.GetPendingsRequest.PendingType\022\r\n"
+      "\005count\030\002 \001(\004\"R\n\013PendingType\022\007\n\003ALL\020\000\022\n\n\006"
+      "INSERT\020\001\022\n\n\006SELECT\020\002\022\020\n\014PONIT_SELECT\020\003\022\020"
+      "\n\014RANGE_SELECT\020\004\"#\n\023GetPendingsResponse\022"
+      "\014\n\004desc\030\001 \001(\t\"\036\n\016FlushDBRequest\022\014\n\004wait\030"
+      "\001 \001(\010\"\021\n\017FlushDBResponse\"~\n\016ProfileReque"
+      "st\0225\n\005ptype\030\001 \001(\0162&.ds_adminpb.ProfileRe"
+      "quest.ProfileType\022\023\n\013output_path\030\002 \001(\t\" "
+      "\n\013ProfileType\022\007\n\003CPU\020\000\022\010\n\004HEAP\020\001\"\021\n\017Prof"
+      "ileResponse*\245\001\n\tAdminType\022\013\n\007UNKNOWN\020\000\022\016"
+      "\n\nSET_CONFIG\020\001\022\016\n\nGET_CONFIG\020\002\022\014\n\010GET_IN"
+      "FO\020\003\022\017\n\013FORCE_SPLIT\020\004\022\016\n\nCOMPACTION\020\005\022\017\n"
+      "\013CLEAR_QUEUE\020\006\022\020\n\014GET_PENDINGS\020\007\022\014\n\010FLUS"
+      "H_DB\020\010\022\013\n\007PROFILE\020\tb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 2367);
+      descriptor, 2627);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "ds_admin.proto", &protobuf_RegisterTypes);
 }
@@ -632,9 +676,30 @@ const GetPendingsRequest_PendingType GetPendingsRequest::PendingType_MIN;
 const GetPendingsRequest_PendingType GetPendingsRequest::PendingType_MAX;
 const int GetPendingsRequest::PendingType_ARRAYSIZE;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-const ::google::protobuf::EnumDescriptor* AdminType_descriptor() {
+const ::google::protobuf::EnumDescriptor* ProfileRequest_ProfileType_descriptor() {
   protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_ds_5fadmin_2eproto::file_level_enum_descriptors[3];
+}
+bool ProfileRequest_ProfileType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const ProfileRequest_ProfileType ProfileRequest::CPU;
+const ProfileRequest_ProfileType ProfileRequest::HEAP;
+const ProfileRequest_ProfileType ProfileRequest::ProfileType_MIN;
+const ProfileRequest_ProfileType ProfileRequest::ProfileType_MAX;
+const int ProfileRequest::ProfileType_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const ::google::protobuf::EnumDescriptor* AdminType_descriptor() {
+  protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_ds_5fadmin_2eproto::file_level_enum_descriptors[4];
 }
 bool AdminType_IsValid(int value) {
   switch (value) {
@@ -647,6 +712,7 @@ bool AdminType_IsValid(int value) {
     case 6:
     case 7:
     case 8:
+    case 9:
       return true;
     default:
       return false;
@@ -1089,6 +1155,7 @@ const int AdminRequest::kCompactionReqFieldNumber;
 const int AdminRequest::kClearQueueReqFieldNumber;
 const int AdminRequest::kGetPendingsReqFieldNumber;
 const int AdminRequest::kFlushDbReqFieldNumber;
+const int AdminRequest::kProfileReqFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AdminRequest::AdminRequest()
@@ -1149,6 +1216,11 @@ AdminRequest::AdminRequest(const AdminRequest& from)
   } else {
     flush_db_req_ = NULL;
   }
+  if (from.has_profile_req()) {
+    profile_req_ = new ::ds_adminpb::ProfileRequest(*from.profile_req_);
+  } else {
+    profile_req_ = NULL;
+  }
   typ_ = from.typ_;
   // @@protoc_insertion_point(copy_constructor:ds_adminpb.AdminRequest)
 }
@@ -1175,6 +1247,7 @@ void AdminRequest::SharedDtor() {
   if (this != internal_default_instance()) delete clear_queue_req_;
   if (this != internal_default_instance()) delete get_pendings_req_;
   if (this != internal_default_instance()) delete flush_db_req_;
+  if (this != internal_default_instance()) delete profile_req_;
 }
 
 void AdminRequest::SetCachedSize(int size) const {
@@ -1242,6 +1315,10 @@ void AdminRequest::Clear() {
     delete flush_db_req_;
   }
   flush_db_req_ = NULL;
+  if (GetArenaNoVirtual() == NULL && profile_req_ != NULL) {
+    delete profile_req_;
+  }
+  profile_req_ = NULL;
   typ_ = 0;
   _internal_metadata_.Clear();
 }
@@ -1379,6 +1456,18 @@ bool AdminRequest::MergePartialFromCodedStream(
         break;
       }
 
+      // .ds_adminpb.ProfileRequest profile_req = 18;
+      case 18: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(146u /* 146 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_profile_req()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1465,6 +1554,12 @@ void AdminRequest::SerializeWithCachedSizes(
       17, *this->flush_db_req_, output);
   }
 
+  // .ds_adminpb.ProfileRequest profile_req = 18;
+  if (this->has_profile_req()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      18, *this->profile_req_, output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -1548,6 +1643,13 @@ void AdminRequest::SerializeWithCachedSizes(
         17, *this->flush_db_req_, deterministic, target);
   }
 
+  // .ds_adminpb.ProfileRequest profile_req = 18;
+  if (this->has_profile_req()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        18, *this->profile_req_, deterministic, target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -1628,6 +1730,13 @@ size_t AdminRequest::ByteSizeLong() const {
         *this->flush_db_req_);
   }
 
+  // .ds_adminpb.ProfileRequest profile_req = 18;
+  if (this->has_profile_req()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->profile_req_);
+  }
+
   // .ds_adminpb.AdminType typ = 1;
   if (this->typ() != 0) {
     total_size += 1 +
@@ -1690,6 +1799,9 @@ void AdminRequest::MergeFrom(const AdminRequest& from) {
   if (from.has_flush_db_req()) {
     mutable_flush_db_req()->::ds_adminpb::FlushDBRequest::MergeFrom(from.flush_db_req());
   }
+  if (from.has_profile_req()) {
+    mutable_profile_req()->::ds_adminpb::ProfileRequest::MergeFrom(from.profile_req());
+  }
   if (from.typ() != 0) {
     set_typ(from.typ());
   }
@@ -1728,6 +1840,7 @@ void AdminRequest::InternalSwap(AdminRequest* other) {
   swap(clear_queue_req_, other->clear_queue_req_);
   swap(get_pendings_req_, other->get_pendings_req_);
   swap(flush_db_req_, other->flush_db_req_);
+  swap(profile_req_, other->profile_req_);
   swap(typ_, other->typ_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
@@ -2115,6 +2228,46 @@ void AdminRequest::set_allocated_flush_db_req(::ds_adminpb::FlushDBRequest* flus
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminRequest.flush_db_req)
 }
 
+// .ds_adminpb.ProfileRequest profile_req = 18;
+bool AdminRequest::has_profile_req() const {
+  return this != internal_default_instance() && profile_req_ != NULL;
+}
+void AdminRequest::clear_profile_req() {
+  if (GetArenaNoVirtual() == NULL && profile_req_ != NULL) delete profile_req_;
+  profile_req_ = NULL;
+}
+const ::ds_adminpb::ProfileRequest& AdminRequest::profile_req() const {
+  const ::ds_adminpb::ProfileRequest* p = profile_req_;
+  // @@protoc_insertion_point(field_get:ds_adminpb.AdminRequest.profile_req)
+  return p != NULL ? *p : *reinterpret_cast<const ::ds_adminpb::ProfileRequest*>(
+      &::ds_adminpb::_ProfileRequest_default_instance_);
+}
+::ds_adminpb::ProfileRequest* AdminRequest::mutable_profile_req() {
+  
+  if (profile_req_ == NULL) {
+    profile_req_ = new ::ds_adminpb::ProfileRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.AdminRequest.profile_req)
+  return profile_req_;
+}
+::ds_adminpb::ProfileRequest* AdminRequest::release_profile_req() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.AdminRequest.profile_req)
+  
+  ::ds_adminpb::ProfileRequest* temp = profile_req_;
+  profile_req_ = NULL;
+  return temp;
+}
+void AdminRequest::set_allocated_profile_req(::ds_adminpb::ProfileRequest* profile_req) {
+  delete profile_req_;
+  profile_req_ = profile_req;
+  if (profile_req) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminRequest.profile_req)
+}
+
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
@@ -2130,6 +2283,7 @@ const int AdminResponse::kCompactionRespFieldNumber;
 const int AdminResponse::kClearQueueRespFieldNumber;
 const int AdminResponse::kGetPendingsRespFieldNumber;
 const int AdminResponse::kFlushDbRespFieldNumber;
+const int AdminResponse::kProfileRespFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 AdminResponse::AdminResponse()
@@ -2189,6 +2343,11 @@ AdminResponse::AdminResponse(const AdminResponse& from)
   } else {
     flush_db_resp_ = NULL;
   }
+  if (from.has_profile_resp()) {
+    profile_resp_ = new ::ds_adminpb::ProfileResponse(*from.profile_resp_);
+  } else {
+    profile_resp_ = NULL;
+  }
   code_ = from.code_;
   // @@protoc_insertion_point(copy_constructor:ds_adminpb.AdminResponse)
 }
@@ -2216,6 +2375,7 @@ void AdminResponse::SharedDtor() {
   if (this != internal_default_instance()) delete clear_queue_resp_;
   if (this != internal_default_instance()) delete get_pendings_resp_;
   if (this != internal_default_instance()) delete flush_db_resp_;
+  if (this != internal_default_instance()) delete profile_resp_;
 }
 
 void AdminResponse::SetCachedSize(int size) const {
@@ -2280,6 +2440,10 @@ void AdminResponse::Clear() {
     delete flush_db_resp_;
   }
   flush_db_resp_ = NULL;
+  if (GetArenaNoVirtual() == NULL && profile_resp_ != NULL) {
+    delete profile_resp_;
+  }
+  profile_resp_ = NULL;
   code_ = 0u;
   _internal_metadata_.Clear();
 }
@@ -2420,6 +2584,18 @@ bool AdminResponse::MergePartialFromCodedStream(
         break;
       }
 
+      // .ds_adminpb.ProfileResponse profile_resp = 18;
+      case 18: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(146u /* 146 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_profile_resp()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -2509,6 +2685,12 @@ void AdminResponse::SerializeWithCachedSizes(
       17, *this->flush_db_resp_, output);
   }
 
+  // .ds_adminpb.ProfileResponse profile_resp = 18;
+  if (this->has_profile_resp()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      18, *this->profile_resp_, output);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -2595,6 +2777,13 @@ void AdminResponse::SerializeWithCachedSizes(
         17, *this->flush_db_resp_, deterministic, target);
   }
 
+  // .ds_adminpb.ProfileResponse profile_resp = 18;
+  if (this->has_profile_resp()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        18, *this->profile_resp_, deterministic, target);
+  }
+
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
@@ -2675,6 +2864,13 @@ size_t AdminResponse::ByteSizeLong() const {
         *this->flush_db_resp_);
   }
 
+  // .ds_adminpb.ProfileResponse profile_resp = 18;
+  if (this->has_profile_resp()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->profile_resp_);
+  }
+
   // uint32 code = 1;
   if (this->code() != 0) {
     total_size += 1 +
@@ -2739,6 +2935,9 @@ void AdminResponse::MergeFrom(const AdminResponse& from) {
   if (from.has_flush_db_resp()) {
     mutable_flush_db_resp()->::ds_adminpb::FlushDBResponse::MergeFrom(from.flush_db_resp());
   }
+  if (from.has_profile_resp()) {
+    mutable_profile_resp()->::ds_adminpb::ProfileResponse::MergeFrom(from.profile_resp());
+  }
   if (from.code() != 0) {
     set_code(from.code());
   }
@@ -2777,6 +2976,7 @@ void AdminResponse::InternalSwap(AdminResponse* other) {
   swap(clear_queue_resp_, other->clear_queue_resp_);
   swap(get_pendings_resp_, other->get_pendings_resp_);
   swap(flush_db_resp_, other->flush_db_resp_);
+  swap(profile_resp_, other->profile_resp_);
   swap(code_, other->code_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
@@ -3175,6 +3375,46 @@ void AdminResponse::set_allocated_flush_db_resp(::ds_adminpb::FlushDBResponse* f
     
   }
   // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminResponse.flush_db_resp)
+}
+
+// .ds_adminpb.ProfileResponse profile_resp = 18;
+bool AdminResponse::has_profile_resp() const {
+  return this != internal_default_instance() && profile_resp_ != NULL;
+}
+void AdminResponse::clear_profile_resp() {
+  if (GetArenaNoVirtual() == NULL && profile_resp_ != NULL) delete profile_resp_;
+  profile_resp_ = NULL;
+}
+const ::ds_adminpb::ProfileResponse& AdminResponse::profile_resp() const {
+  const ::ds_adminpb::ProfileResponse* p = profile_resp_;
+  // @@protoc_insertion_point(field_get:ds_adminpb.AdminResponse.profile_resp)
+  return p != NULL ? *p : *reinterpret_cast<const ::ds_adminpb::ProfileResponse*>(
+      &::ds_adminpb::_ProfileResponse_default_instance_);
+}
+::ds_adminpb::ProfileResponse* AdminResponse::mutable_profile_resp() {
+  
+  if (profile_resp_ == NULL) {
+    profile_resp_ = new ::ds_adminpb::ProfileResponse;
+  }
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.AdminResponse.profile_resp)
+  return profile_resp_;
+}
+::ds_adminpb::ProfileResponse* AdminResponse::release_profile_resp() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.AdminResponse.profile_resp)
+  
+  ::ds_adminpb::ProfileResponse* temp = profile_resp_;
+  profile_resp_ = NULL;
+  return temp;
+}
+void AdminResponse::set_allocated_profile_resp(::ds_adminpb::ProfileResponse* profile_resp) {
+  delete profile_resp_;
+  profile_resp_ = profile_resp;
+  if (profile_resp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.AdminResponse.profile_resp)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -8533,6 +8773,568 @@ void FlushDBResponse::InternalSwap(FlushDBResponse* other) {
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // FlushDBResponse
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int ProfileRequest::kPtypeFieldNumber;
+const int ProfileRequest::kOutputPathFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ProfileRequest::ProfileRequest()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_ds_5fadmin_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:ds_adminpb.ProfileRequest)
+}
+ProfileRequest::ProfileRequest(const ProfileRequest& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  output_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.output_path().size() > 0) {
+    output_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.output_path_);
+  }
+  ptype_ = from.ptype_;
+  // @@protoc_insertion_point(copy_constructor:ds_adminpb.ProfileRequest)
+}
+
+void ProfileRequest::SharedCtor() {
+  output_path_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ptype_ = 0;
+  _cached_size_ = 0;
+}
+
+ProfileRequest::~ProfileRequest() {
+  // @@protoc_insertion_point(destructor:ds_adminpb.ProfileRequest)
+  SharedDtor();
+}
+
+void ProfileRequest::SharedDtor() {
+  output_path_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void ProfileRequest::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ProfileRequest::descriptor() {
+  protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_ds_5fadmin_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const ProfileRequest& ProfileRequest::default_instance() {
+  protobuf_ds_5fadmin_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+ProfileRequest* ProfileRequest::New(::google::protobuf::Arena* arena) const {
+  ProfileRequest* n = new ProfileRequest;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void ProfileRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:ds_adminpb.ProfileRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  output_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ptype_ = 0;
+  _internal_metadata_.Clear();
+}
+
+bool ProfileRequest::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:ds_adminpb.ProfileRequest)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_ptype(static_cast< ::ds_adminpb::ProfileRequest_ProfileType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string output_path = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_output_path()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->output_path().data(), static_cast<int>(this->output_path().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "ds_adminpb.ProfileRequest.output_path"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:ds_adminpb.ProfileRequest)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:ds_adminpb.ProfileRequest)
+  return false;
+#undef DO_
+}
+
+void ProfileRequest::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:ds_adminpb.ProfileRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+  if (this->ptype() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->ptype(), output);
+  }
+
+  // string output_path = 2;
+  if (this->output_path().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->output_path().data(), static_cast<int>(this->output_path().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "ds_adminpb.ProfileRequest.output_path");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->output_path(), output);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:ds_adminpb.ProfileRequest)
+}
+
+::google::protobuf::uint8* ProfileRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:ds_adminpb.ProfileRequest)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+  if (this->ptype() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->ptype(), target);
+  }
+
+  // string output_path = 2;
+  if (this->output_path().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->output_path().data(), static_cast<int>(this->output_path().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "ds_adminpb.ProfileRequest.output_path");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->output_path(), target);
+  }
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ds_adminpb.ProfileRequest)
+  return target;
+}
+
+size_t ProfileRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ds_adminpb.ProfileRequest)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  // string output_path = 2;
+  if (this->output_path().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->output_path());
+  }
+
+  // .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+  if (this->ptype() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->ptype());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ProfileRequest::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:ds_adminpb.ProfileRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ProfileRequest* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ProfileRequest>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ds_adminpb.ProfileRequest)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ds_adminpb.ProfileRequest)
+    MergeFrom(*source);
+  }
+}
+
+void ProfileRequest::MergeFrom(const ProfileRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ds_adminpb.ProfileRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.output_path().size() > 0) {
+
+    output_path_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.output_path_);
+  }
+  if (from.ptype() != 0) {
+    set_ptype(from.ptype());
+  }
+}
+
+void ProfileRequest::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:ds_adminpb.ProfileRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ProfileRequest::CopyFrom(const ProfileRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ds_adminpb.ProfileRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ProfileRequest::IsInitialized() const {
+  return true;
+}
+
+void ProfileRequest::Swap(ProfileRequest* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ProfileRequest::InternalSwap(ProfileRequest* other) {
+  using std::swap;
+  output_path_.Swap(&other->output_path_);
+  swap(ptype_, other->ptype_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata ProfileRequest::GetMetadata() const {
+  protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_ds_5fadmin_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// ProfileRequest
+
+// .ds_adminpb.ProfileRequest.ProfileType ptype = 1;
+void ProfileRequest::clear_ptype() {
+  ptype_ = 0;
+}
+::ds_adminpb::ProfileRequest_ProfileType ProfileRequest::ptype() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.ptype)
+  return static_cast< ::ds_adminpb::ProfileRequest_ProfileType >(ptype_);
+}
+void ProfileRequest::set_ptype(::ds_adminpb::ProfileRequest_ProfileType value) {
+  
+  ptype_ = value;
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.ptype)
+}
+
+// string output_path = 2;
+void ProfileRequest::clear_output_path() {
+  output_path_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& ProfileRequest::output_path() const {
+  // @@protoc_insertion_point(field_get:ds_adminpb.ProfileRequest.output_path)
+  return output_path_.GetNoArena();
+}
+void ProfileRequest::set_output_path(const ::std::string& value) {
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:ds_adminpb.ProfileRequest.output_path)
+}
+#if LANG_CXX11
+void ProfileRequest::set_output_path(::std::string&& value) {
+  
+  output_path_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:ds_adminpb.ProfileRequest.output_path)
+}
+#endif
+void ProfileRequest::set_output_path(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:ds_adminpb.ProfileRequest.output_path)
+}
+void ProfileRequest::set_output_path(const char* value, size_t size) {
+  
+  output_path_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:ds_adminpb.ProfileRequest.output_path)
+}
+::std::string* ProfileRequest::mutable_output_path() {
+  
+  // @@protoc_insertion_point(field_mutable:ds_adminpb.ProfileRequest.output_path)
+  return output_path_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* ProfileRequest::release_output_path() {
+  // @@protoc_insertion_point(field_release:ds_adminpb.ProfileRequest.output_path)
+  
+  return output_path_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void ProfileRequest::set_allocated_output_path(::std::string* output_path) {
+  if (output_path != NULL) {
+    
+  } else {
+    
+  }
+  output_path_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), output_path);
+  // @@protoc_insertion_point(field_set_allocated:ds_adminpb.ProfileRequest.output_path)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+ProfileResponse::ProfileResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_ds_5fadmin_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:ds_adminpb.ProfileResponse)
+}
+ProfileResponse::ProfileResponse(const ProfileResponse& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:ds_adminpb.ProfileResponse)
+}
+
+void ProfileResponse::SharedCtor() {
+  _cached_size_ = 0;
+}
+
+ProfileResponse::~ProfileResponse() {
+  // @@protoc_insertion_point(destructor:ds_adminpb.ProfileResponse)
+  SharedDtor();
+}
+
+void ProfileResponse::SharedDtor() {
+}
+
+void ProfileResponse::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* ProfileResponse::descriptor() {
+  protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_ds_5fadmin_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const ProfileResponse& ProfileResponse::default_instance() {
+  protobuf_ds_5fadmin_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+ProfileResponse* ProfileResponse::New(::google::protobuf::Arena* arena) const {
+  ProfileResponse* n = new ProfileResponse;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void ProfileResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:ds_adminpb.ProfileResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear();
+}
+
+bool ProfileResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:ds_adminpb.ProfileResponse)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormat::SkipField(
+          input, tag, _internal_metadata_.mutable_unknown_fields()));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:ds_adminpb.ProfileResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:ds_adminpb.ProfileResponse)
+  return false;
+#undef DO_
+}
+
+void ProfileResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:ds_adminpb.ProfileResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  }
+  // @@protoc_insertion_point(serialize_end:ds_adminpb.ProfileResponse)
+}
+
+::google::protobuf::uint8* ProfileResponse::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  (void)deterministic; // Unused
+  // @@protoc_insertion_point(serialize_to_array_start:ds_adminpb.ProfileResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ds_adminpb.ProfileResponse)
+  return target;
+}
+
+size_t ProfileResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ds_adminpb.ProfileResponse)
+  size_t total_size = 0;
+
+  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
+  }
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void ProfileResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:ds_adminpb.ProfileResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ProfileResponse* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const ProfileResponse>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:ds_adminpb.ProfileResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:ds_adminpb.ProfileResponse)
+    MergeFrom(*source);
+  }
+}
+
+void ProfileResponse::MergeFrom(const ProfileResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ds_adminpb.ProfileResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void ProfileResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:ds_adminpb.ProfileResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ProfileResponse::CopyFrom(const ProfileResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ds_adminpb.ProfileResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ProfileResponse::IsInitialized() const {
+  return true;
+}
+
+void ProfileResponse::Swap(ProfileResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void ProfileResponse::InternalSwap(ProfileResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata ProfileResponse::GetMetadata() const {
+  protobuf_ds_5fadmin_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_ds_5fadmin_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// ProfileResponse
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
