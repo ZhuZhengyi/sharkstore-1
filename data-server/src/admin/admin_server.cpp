@@ -231,13 +231,15 @@ Status AdminServer::profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::P
         return Status(Status::kDuplicate, "profile", "already running");
     }
 
-    FLOG_INFO("[Admin] Start Profile %s, seconds=%" PRIu64,
-            ProfileRequest_ProfileType_Name(req.ptype()).c_str(), seconds);
 
     auto f = std::async(std::launch::async, [&, this] {
+        FLOG_INFO("[Admin] Start Profile %s, seconds=%" PRIu64,
+                  ProfileRequest_ProfileType_Name(req.ptype()).c_str(), seconds);
         start_func();
         ::sleep(seconds);
         stop_func();
+        FLOG_INFO("[Admin] Stop Profile %s, seconds=%" PRIu64,
+                  ProfileRequest_ProfileType_Name(req.ptype()).c_str(), seconds);
     });
     try {
         f.get();
