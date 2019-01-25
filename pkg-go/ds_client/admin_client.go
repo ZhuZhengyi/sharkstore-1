@@ -208,7 +208,7 @@ func (c *adminClient) FlushDB(addr string, wait bool) error {
 }
 
 func (c *adminClient) Profile(addr string, ptype ds_adminpb.ProfileRequest_ProfileType, path string, seconds uint64) error {
-	req := c.newRequest(ds_adminpb.AdminType_FLUSH_DB)
+	req := c.newRequest(ds_adminpb.AdminType_PROFILE)
 	req.ProfileReq = &ds_adminpb.ProfileRequest{
 		Ptype:      ptype,
 		OutputPath: path,

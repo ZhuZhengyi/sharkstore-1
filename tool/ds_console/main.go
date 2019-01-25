@@ -40,6 +40,10 @@ var completer = readline.NewPrefixCompleter(
 		readline.PcItem("fast"),
 	),
 	readline.PcItem("flush"),
+	readline.PcItem("profile",
+		readline.PcItem("cpu"),
+		readline.PcItem("heap"),
+	),
 )
 
 func usage(w io.Writer) {
