@@ -55,12 +55,12 @@ func main() {
 	cli = client.NewAdminClient(*token, 1)
 
 	rl, err := readline.NewEx(&readline.Config{
-		Prompt:            fmt.Sprintf("%s> ", *addr),
-		AutoComplete:      completer,
-		HistoryFile:       filepath.Join(os.TempDir(), fmt.Sprintf("readline.tmp.%d", time.Now().Unix())),
-		InterruptPrompt:   "^C",
-		EOFPrompt:         "exit",
-		HistorySearchFold: true,
+		Prompt:          fmt.Sprintf("%s> ", *addr),
+		AutoComplete:    completer,
+		HistoryFile:     filepath.Join(os.TempDir(), fmt.Sprintf("readline.tmp.%d", time.Now().Unix())),
+		InterruptPrompt: "^C",
+		EOFPrompt:       "exit",
+		//		HistorySearchFold: true,
 	})
 	if err != nil {
 		panic(err)
@@ -103,6 +103,10 @@ func main() {
 			clearQ(cli, strings.TrimSpace(line[6:]))
 		case strings.HasPrefix(line, "flush"):
 			flush(cli, strings.TrimSpace(line[5:]))
+		case strings.HasPrefix(line, "profile cpu"):
+			profile(cli, ds_adminpb.ProfileRequest_CPU, strings.TrimSpace(line[11:]))
+		case strings.HasPrefix(line, "profile heap"):
+			profile(cli, ds_adminpb.ProfileRequest_HEAP, strings.TrimSpace(line[12:]))
 
 		case line == "help":
 			fallthrough
@@ -228,5 +232,19 @@ func flush(cli client.AdminClient, arg string) {
 		println("ERR: ", err.Error())
 	} else {
 		fmt.Printf("flush successully. wait=%v\n", wait)
+	}
+}
+
+func profile(cli client.AdminClient, ptype ds_adminpb.ProfileRequest_ProfileType, arg string) {
+	seconds, err := strconv.ParseUint(arg, 10, 64)
+	if err != nil {
+		println("ERR: invalid seconds args: ", arg)
+		return
+	}
+	err = cli.Profile(*addr, ptype, "", seconds)
+	if err != nil {
+		println("ERR: ", err.Error())
+	} else {
+		fmt.Printf("profile successully.")
 	}
 }

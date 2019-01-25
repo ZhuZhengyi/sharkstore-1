@@ -40,6 +40,9 @@ type AdminClient interface {
 
 	// FlushDB sync db
 	FlushDB(addr string, wait bool) error
+
+	// Profile profile
+	Profile(addr string, ptype ds_adminpb.ProfileRequest_ProfileType, path string, seconds uint64) error
 }
 
 type adminClient struct {
@@ -199,6 +202,17 @@ func (c *adminClient) FlushDB(addr string, wait bool) error {
 	req := c.newRequest(ds_adminpb.AdminType_FLUSH_DB)
 	req.FlushDbReq = &ds_adminpb.FlushDBRequest{
 		Wait: wait,
+	}
+	_, err := c.send(addr, req)
+	return err
+}
+
+func (c *adminClient) Profile(addr string, ptype ds_adminpb.ProfileRequest_ProfileType, path string, seconds uint64) error {
+	req := c.newRequest(ds_adminpb.AdminType_FLUSH_DB)
+	req.ProfileReq = &ds_adminpb.ProfileRequest{
+		Ptype:      ptype,
+		OutputPath: path,
+		Seconds:    seconds,
 	}
 	_, err := c.send(addr, req)
 	return err

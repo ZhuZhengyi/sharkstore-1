@@ -208,7 +208,7 @@ Status AdminServer::profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::P
         start_func = [path]() {
             ProfilerStart("/tmp/ds_cpu.pprof");
         };
-        end_func = ProfilerStop;
+        stop_func = ProfilerStop;
         break;
 #endif
     case ds_adminpb::ProfileRequest_ProfileType_HEAP:
@@ -218,7 +218,7 @@ Status AdminServer::profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::P
         start_func = [path]() {
             HeapProfilerStart("/tmp/ds_heap.pprof");
         };
-        end_func = HeapProfilerStop;
+        stop_func = HeapProfilerStop;
         break;
 #endif
     default:
@@ -231,13 +231,22 @@ Status AdminServer::profile(const ds_adminpb::ProfileRequest& req, ds_adminpb::P
         return Status(Status::kDuplicate, "profile", "already running");
     }
 
+    FLOG_INFO("[Admin] Start Profile %s, seconds=%" PRIu64,
+            ProfileRequest_ProfileType_Name(req.ptype()).c_str(), seconds);
+
     auto f = std::async(std::launch::async, [&, this] {
         start_func();
         ::sleep(seconds);
         stop_func();
     });
-    f.get();
+    try {
+        f.get();
+    } catch (std::exception& e) {
+        profile_running_ = false;
+        return Status(Status::kUnknown, "run profile thread", e.what());
+    }
     profile_running_ = false;
+    return Status::OK();
 }
 
 } // namespace admin
