@@ -10,6 +10,7 @@
 #include "frame/sf_logger.h"
 #include "frame/sf_util.h"
 #include "proto/gen/funcpb.pb.h"
+#include "storage/metric.h"
 
 #include "callback.h"
 #include "run_status.h"
@@ -136,6 +137,8 @@ void Worker::Push(common::ProtoMessage *task) {
         auto resp = new kvrpcpb::DsInsertResponse;
         resp->mutable_resp()->set_affected_keys(1);
         context_->socket_session->Send(task, resp);
+
+        storage::g_metric.AddWrite(1, 1);
     } else {
         FLOG_ERROR("unsupported func id: %s", funcpb::FunctionID_Name(func_id).c_str());
     }
