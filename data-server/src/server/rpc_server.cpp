@@ -47,7 +47,8 @@ void RPCServer::onMessage(const net::Context& ctx, const net::MessagePtr& msg) {
             select(ctx, msg);
             break;
         default:
-            FLOG_WARN("unsupported func type: %s", funcpb::FunctionID_Name(func_id).c_str());
+            FLOG_WARN("unsupported func type: %s, from %s",
+                    funcpb::FunctionID_Name(func_id).c_str(), ctx.remote_addr.c_str());
     }
 }
 
