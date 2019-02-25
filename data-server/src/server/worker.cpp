@@ -127,32 +127,30 @@ void Worker::Stop() {
 }
 
 void Worker::Push(common::ProtoMessage *task) {
-    sf_session_entry_t *entry;
     task->socket = &socket_server_;
 
-    if (task->header.func_id == 0) {  // funcpb::FunctionID::kFuncHeartbeat = 0
-        entry = task->socket->lookup_session_entry(task->session_id);
-        if (entry == nullptr) {
-            FLOG_DEBUG("Heartbeat ip: %s, session_id %" PRIu64,
-                       entry->rtask->client_ip, task->session_id);
-        } else {
-            FLOG_DEBUG("session: %" PRId64 " is alive", task->session_id);
-        }
+    auto func_id = static_cast<funcpb::FunctionID>(task->header.func_id);
+    if (func_id == 0) { // heart beat
         context_->socket_session->Send(task, nullptr);
-        return;
+    } else if (func_id == funcpb::kFuncInsert) {
+        auto resp = new kvrpcpb::DsInsertResponse;
+        resp->mutable_resp()->set_affected_keys(1);
+        context_->socket_session->Send(task, resp);
+    } else {
+        FLOG_ERROR("unsupported func id: %s", funcpb::FunctionID_Name(func_id).c_str());
     }
 
-    if (isSlow(task)) {
-        auto slot = ++slot_seed_ % ds_config.slow_worker_num;
-        auto mq = slow_queue_.msg_queue[slot];
-        lk_queue_push(mq, task);
-        ++slow_queue_.all_msg_size;
-    } else {
-        auto slot = ++slot_seed_ % ds_config.fast_worker_num;
-        auto mq = fast_queue_.msg_queue[slot];
-        lk_queue_push(mq, task);
-        ++fast_queue_.all_msg_size;
-    }
+//    if (isSlow(task)) {
+//        auto slot = ++slot_seed_ % ds_config.slow_worker_num;
+//        auto mq = slow_queue_.msg_queue[slot];
+//        lk_queue_push(mq, task);
+//        ++slow_queue_.all_msg_size;
+//    } else {
+//        auto slot = ++slot_seed_ % ds_config.fast_worker_num;
+//        auto mq = fast_queue_.msg_queue[slot];
+//        lk_queue_push(mq, task);
+//        ++fast_queue_.all_msg_size;
+//    }
 }
 
 void Worker::DealTask(common::ProtoMessage *task) {
