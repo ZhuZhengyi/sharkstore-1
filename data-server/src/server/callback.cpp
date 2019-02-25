@@ -37,7 +37,10 @@ void ds_worker_deal_callback(request_buff_t *request, void *args) {
                    req->header.body_len);
 
         auto func_id = static_cast<funcpb::FunctionID>(req->header.func_id);
-        if (func_id == funcpb::kFuncInsert) {
+        if (func_id == 0) { // heart beat
+            cs->socket_session->Send(req, nullptr);
+            return;
+        } else if (func_id == funcpb::kFuncInsert) {
             auto resp = new kvrpcpb::DsInsertResponse;
             resp->mutable_resp()->set_affected_keys(1);
             cs->socket_session->Send(req, resp);
