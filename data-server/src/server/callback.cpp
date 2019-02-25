@@ -2,6 +2,8 @@
 
 #include "frame/sf_logger.h"
 #include "frame/sf_util.h"
+#include "proto/gen/funcpb.pb.h"
+#include "proto/gen/kvrpcpb.pb.h"
 
 #include "common/socket_message.h"
 #include "run_status.h"
@@ -34,7 +36,14 @@ void ds_worker_deal_callback(request_buff_t *request, void *args) {
                    request->session_id, req->header.msg_id, req->header.func_id,
                    req->header.body_len);
 
-        cs->worker->Push(req);
+        auto func_id = static_cast<funcpb::FunctionID>(req->header.func_id);
+        if (func_id == funcpb::kFuncInsert) {
+            auto resp = new kvrpcpb::DsInsertResponse;
+            resp->mutable_resp()->set_affected_keys(1);
+            cs->socket_session->Send(req, resp);
+        } else {
+            FLOG_ERROR("unsupported func id: %s", funcpb::FunctionID_Name(func_id).c_str());
+        }
     }
 }
 
