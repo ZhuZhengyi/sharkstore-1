@@ -116,9 +116,9 @@ int DataServer::Init() {
         return -1;
     }
 
-    if (context_->worker->Init(context_) != 0) {
-        return -1;
-    }
+//    if (context_->worker->Init(context_) != 0) {
+//        return -1;
+//    }
 
     if (context_->run_status->Init(context_) != 0) {
         return -1;
@@ -134,7 +134,12 @@ int DataServer::Start() {
         return -1;
     }
 
-    if (context_->worker->Start() != 0) {
+//    if (context_->worker->Start() != 0) {
+//        return -1;
+//    }
+    auto s = rpc_server_.Start();
+    if (!s.ok()) {
+        FLOG_ERROR("Start rpc server failed: %s", s.ToString().c_str());
         return -1;
     }
 
@@ -148,7 +153,7 @@ int DataServer::Start() {
         return -1;
     }
 
-    auto s = context_->master_worker->Start(context_->range_server);
+    s = context_->master_worker->Start(context_->range_server);
     if (!s.ok()) {
         FLOG_ERROR("start master worker failed. %s", s.ToString().c_str());
         return -1;
@@ -167,6 +172,8 @@ int DataServer::Start() {
 }
 
 void DataServer::Stop() {
+    rpc_server_.Stop();
+
     if (admin_server_) {
         admin_server_->Stop();
     }

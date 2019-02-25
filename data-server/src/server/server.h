@@ -2,6 +2,7 @@
 #define FBASE_DATASERVER_SERVER_DS_SERVER_H_
 
 #include "context_server.h"
+#include "rpc_server.h"
 
 namespace sharkstore {
 namespace dataserver {
@@ -38,6 +39,7 @@ private:
 private:
     ContextServer *context_ = nullptr;
     std::unique_ptr<admin::AdminServer> admin_server_;
+    RPCServer rpc_server_;
 };
 
 } /* namespace server */
