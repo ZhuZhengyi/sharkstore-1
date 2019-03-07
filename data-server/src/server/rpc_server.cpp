@@ -6,6 +6,8 @@
 #include "storage/metric.h"
 #include "proto/gen/funcpb.pb.h"
 #include "proto/gen/kvrpcpb.pb.h"
+#include "net/session.h"
+#include "net/message.h"
 
 namespace sharkstore {
 namespace dataserver {
@@ -42,14 +44,22 @@ Status RPCServer::Stop() {
     return Status::OK();
 }
 
+static void reply(const net::Context& ctx, const net::Head& req_head,
+                      const ::google::protobuf::Message& resp) {
+    std::vector<uint8_t> body;
+    body.resize(resp.ByteSizeLong());
+    resp.SerializeToArray(body.data(), static_cast<int>(body.size()));
+    ctx.Write(req_head, std::move(body));
+}
+
 void RPCServer::onMessage(const net::Context& ctx, const net::MessagePtr& msg) {
-    auto task = new RPCRequest(ctx, msg);
-    if (task->msg->head.func_id == funcpb::kFuncInsert) {
+    if (msg->head.func_id == funcpb::kFuncInsert) {
         kvrpcpb::DsInsertResponse resp;
         resp.mutable_resp()->set_affected_keys(1);
-        task->Reply(resp);
+        reply(ctx, msg->head, resp);
         storage::g_metric.AddWrite(1, 1);
     } else {
+        auto task = new RPCRequest(ctx, msg);
         worker_->Push(task);
     }
 }
