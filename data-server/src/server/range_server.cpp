@@ -452,6 +452,7 @@ void RangeServer::DealTask(RPCRequestPtr rpc) {
             kvrpcpb::DsInsertResponse resp;
             resp.mutable_resp()->set_affected_keys(1);
             rpc->Reply(resp);
+            storage::g_metric.AddWrite(1, 1);
         }
             break;
         case funcpb::kFuncUpdate:
