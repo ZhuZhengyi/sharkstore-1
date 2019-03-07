@@ -3,6 +3,9 @@
 #include "frame/sf_logger.h"
 #include "common/rpc_request.h"
 #include "worker.h"
+#include "storage/metric.h"
+#include "proto/gen/funcpb.pb.h"
+#include "proto/gen/kvrpcpb.pb.h"
 
 namespace sharkstore {
 namespace dataserver {
@@ -41,7 +44,14 @@ Status RPCServer::Stop() {
 
 void RPCServer::onMessage(const net::Context& ctx, const net::MessagePtr& msg) {
     auto task = new RPCRequest(ctx, msg);
-    worker_->Push(task);
+    if (task->msg->head.func_id == funcpb::kFuncInsert) {
+        kvrpcpb::DsInsertResponse resp;
+        resp.mutable_resp()->set_affected_keys(1);
+        task->Reply(resp);
+        storage::g_metric.AddWrite(1, 1);
+    } else {
+        worker_->Push(task);
+    }
 }
 
 } /* namespace server */
