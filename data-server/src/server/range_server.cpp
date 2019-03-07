@@ -447,7 +447,12 @@ void RangeServer::DealTask(RPCRequestPtr rpc) {
 
         // SQL methods
         case funcpb::kFuncInsert:
-            FORWARD_TO_RANGE(rpc, kvrpcpb::DsInsertRequest, kvrpcpb::DsInsertResponse, Insert);
+//            FORWARD_TO_RANGE(rpc, kvrpcpb::DsInsertRequest, kvrpcpb::DsInsertResponse, Insert);
+        {
+            kvrpcpb::DsInsertResponse resp;
+            resp.mutable_resp()->set_affected_keys(1);
+            rpc->Reply(resp);
+        }
             break;
         case funcpb::kFuncUpdate:
             FORWARD_TO_RANGE(rpc, kvrpcpb::DsUpdateRequest, kvrpcpb::DsUpdateResponse, Update);
